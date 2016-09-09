@@ -1,15 +1,5 @@
-var mongoose = require('mongoose');
-var deepPopulate = require('mongoose-deep-populate')(mongoose);
-var uniqueValidator = require('mongoose-unique-validator');
-var timestamps = require('mongoose-timestamp');
-var validators = require('mongoose-validators');
-var monguurl = require('monguurl');
-require('mongoose-middleware').initialize(mongoose);
-
-var Schema = mongoose.Schema;
-
 var schema = new Schema({
-  //  ************Login Details*************8
+  //  ************Login Details*************
   name:{
     type:String,
     validate:validators.isAlpha()
@@ -19,7 +9,7 @@ var schema = new Schema({
     validate:validators.isEmail()
   },
   mobile:{
-    type:Number,
+    type:String,
     validate:validators.isLength(8,14)
   },
   password:{
@@ -72,11 +62,11 @@ var schema = new Schema({
       {
       name:{
         type:String
-      }//,
-      // age:{
-      //   type:Number,
-      //   ref:"User"
-      // }
+      },
+       age:{
+         type:Number,
+         validate:validators.isNumeric()
+       }
     }],
     annualIncome:{
       type:String

@@ -8,6 +8,7 @@
 var mongoose = require('mongoose');
 var Grid = require('gridfs-stream');
 var fs = require("fs");
+var fse = require('fs-extra')
 var lwip = require("lwip");
 var process = require('child_process');
 var lodash = require('lodash');
@@ -122,6 +123,22 @@ var models = {
         if (extension == "jpeg") {
             extension = "jpg";
         }
+
+                if (extension == "pdf") {
+                  extension = "pdf";
+                  fse.copy('Config.js', 'mynewfile.js', function (err) {
+                  // fse.copy('../../uploads/pdfurl-guide.pdf', '../../uploads/mynewfile.pdf', function (err) {
+                    if (err) return console.error(err)
+                    console.log("success!")
+});
+              // var file = "../uploads/file.txt";
+              // fse.createFile(file, function(err){
+              //   console.log(err);
+              //   console.log("done");
+              // });
+                }
+
+
         var newFilename = id + "." + extension;
 
         var writestream = gfs.createWriteStream({

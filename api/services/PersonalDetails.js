@@ -15,26 +15,16 @@ var schema = new Schema({
     dob:{
       type:Date
     },
-    address:{
-      address1:{
-        type:String
-      },
-      address2:{
-        type:String
-      },
-      town:{
-        type:String
-      },
-      city:{
-        type:String
-      },
-      pincode:{
-        type:Number
-      },
-      country:{
-        type:String
-      }
-    },
+    
+    address_address1:String,
+    address_address2:String,
+    address_town:String,
+    address_city:String,
+    address_pincode:Number,
+    address_country:String,
+    address_lat:String,
+    address_lng:String,
+
     securityQuestion:{
       question:{
         type:String,

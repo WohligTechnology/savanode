@@ -1,3 +1,4 @@
+var objectid = require("mongodb").ObjectId;
 var schema = new Schema({
   //  ************Login Details*************
   name:String,
@@ -70,23 +71,80 @@ getHouseHold:function(data,callback){
       console.log(err);
       callback(err, null);
     }else {
-      callback(null,found.houseHold);
+      console.log(found,"000");
+      var data ={};
+      data.results = found.houseHold;
+      if(found && found.houseHold.length>0){
+      callback(null,data);
+    }else{
+      callback(null,{message:"No Data Found"});
     }
+    }
+
   })
 },
-
 getOneHouseHold: function(data, callback){
   User.aggregate([{
-    $match:{_id:data._id
+    $unwind: "$houseHold"
+  },{
+    $match:{
+      "houseHold._id":objectid(data._id)
     }
-    }]).exec(function(err, found){
+  },{
+    $project:{
+      "houseHold.name":1,
+      "houseHold.age":1,
+      "houseHold._id":1
+    }
+  }
+]).exec(function(err, found){
     if(err){
       console.log(err);
       callback(err, null);
     }else {
-callback(null, found);
+callback(null, found[0].houseHold);
   }});
-}
+},
+
+savehouseHold: function(data, callback) {
+      //  var product = data.product;
+      //  console.log(product);
+       if (!data._id) {
+           User.update({
+               _id: data.user
+           }, {
+               $push: {
+                   houseHold: data.houseHold
+               }
+           }, function(err, updated) {
+               if (err) {
+                   console.log(err);
+                   callback(err, null);
+               } else {
+                   callback(null, updated);
+               }
+           });
+       } else {
+           data._id = objectid(data._id);
+           tobechanged = {};
+           var attribute = "houseHold.$.";
+           _.forIn(data, function(value, key) {
+               tobechanged[attribute + key] = value;
+           });
+           User.update({
+               "houseHold._id": data._id
+           }, {
+               $set: tobechanged
+           }, function(err, updated) {
+               if (err) {
+                   console.log(err);
+                   callback(err, null);
+               } else {
+                   callback(null, updated);
+               }
+           });
+       }
+   }
 
 };
 module.exports = _.assign(module.exports, exports, model);

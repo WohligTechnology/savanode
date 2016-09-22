@@ -11,18 +11,19 @@ var schema = new Schema({
       validate:validators.isEmail()
     },
     employeeId:Number,
-    role:{
+    roles:{
       type:String,
       enum:["CEO","Principle","Manager","APM"]
-    }
-    ,
+    },
     role:{
       type:Schema.Types.ObjectId,
-      ref:"BranchRegistration"
+      ref:"BranchRegistration",
+      index : true
     },
     branch:{
       type:Schema.Types.ObjectId,
-      ref:"BranchRegistration"
+      ref:"BranchRegistration",
+      index : true
     }
 });
 

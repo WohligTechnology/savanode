@@ -1,6 +1,6 @@
 var schema = new Schema({
       branchName:String,
-      branchId:Number,
+      branchId:String,
       address:String,
       contactNumber:[Number],
       numberOfEmployee:Number,
@@ -14,7 +14,7 @@ var schema = new Schema({
       }],
       eastablishmentType:String,
       cuisines:[String],
-      Collection:{
+      collections:{
         type:Boolean,
         default:false
       },

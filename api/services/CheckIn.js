@@ -1,4 +1,14 @@
 var schema = new Schema({
+    employee:{
+      type:Schema.Types.ObjectId,
+      ref:"Employee",
+      index : true
+    },
+    branch:{
+      type:Schema.Types.ObjectId,
+      ref:"BranchRegistration",
+      index : true
+    },
     from:{
       type:Date,
       default:Date.now()

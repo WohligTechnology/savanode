@@ -4,7 +4,7 @@ var schema = new Schema({
   },
     title:{
       type:String,
-    enum:["Mr","Mrs","Ms"]
+      enum:["Mr","Mrs","Ms"]
     },
     firstName :{
       type:String
@@ -15,16 +15,14 @@ var schema = new Schema({
     dob:{
       type:Date
     },
-    
-    address_address1:String,
-    address_address2:String,
-    address_town:String,
-    address_city:String,
-    address_pincode:Number,
-    address_country:String,
-    address_lat:String,
-    address_lng:String,
-
+    address1:String,
+    address2:String,
+    town:String,
+    city:String,
+    pincode:Number,
+    country:String,
+    lat:String,
+    lng:String,
     securityQuestion:{
       question:{
         type:String,
@@ -47,7 +45,7 @@ var schema = new Schema({
     },
     buisnessType:{
       type: Schema.Types.ObjectId,
-      ref:"Categories"
+      ref:"Category"
     },
     registrationAuthority:{
       type:String

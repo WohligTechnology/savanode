@@ -11,15 +11,15 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
   name:{
     type:String,
-    require:true
-    // validate:validators.isAlpha()
-  }
+    required:true
+  },
+  status: Boolean
 });
 
 schema.plugin(deepPopulate, {});
 schema.plugin(uniqueValidator);
 schema.plugin(timestamps);
-module.exports = mongoose.model('Categories', schema);
+module.exports = mongoose.model('Category', schema);
 
 var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {};

@@ -15,7 +15,7 @@ var schema = new Schema({
   image: String,
   gender: {
     type: String,
-    enum: ["Male", "Female", "Other"]
+    enum: ["Male","Female","Other"]
   },
   dob: Date,
 

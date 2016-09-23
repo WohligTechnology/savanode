@@ -11,9 +11,7 @@ var schema = new Schema({
     rate:Number
   },
   totalReward:Number,
-  offer:[{
-    pointsOrStamps:Number
-  }]
+  offer:[Number]
 });
 
 schema.plugin(deepPopulate, {});

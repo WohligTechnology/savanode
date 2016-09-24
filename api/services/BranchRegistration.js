@@ -57,6 +57,62 @@ var model = {
 
     })
   },
+  addTime: function(data, callback) {
+    // body...
+    BranchRegistration.update({
+        "hours": {$elemMatch: { "_id":   objectid("57e505d508c0a78637ef7318") } }
+
+      }, {
+        "$push": {
+          "hours.$.time": {
+            "from":"12.00",
+            "to":"1.00"
+          }
+        }
+      },
+      function(err, found) {
+        if (err) {
+          // console.log(err);
+          callback(err, null);
+        } else {
+          callback(null, found)
+        }
+      }
+    );
+  },
+  updateTime: function(data, callback) {
+    // body...
+        BranchRegistration.find({
+        "hours.0.time": {$elemMatch: { "_id":   objectid("57e67ca204090c4543772655") } }
+},
+
+
+
+
+      //  {
+      //   "$set": {
+      //     "hours.0.time": {
+      //       "from":"12.00",
+      //       "to":"1.00"
+      //     }
+      //   }
+      // },
+
+
+
+
+
+      {},{},
+      function(err, found) {
+        if (err) {
+          // console.log(err);
+          callback(err, null);
+        } else {
+          callback(null, found)
+        }
+      }
+    );
+  },
   getTime: function(data, callback) {
     // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", data._id);
     BranchRegistration.aggregate([{
@@ -101,6 +157,12 @@ var model = {
           "hours.time._id": 1
         }
       }
+      // ,{
+      //   $set:{
+      //     "from":"12.45",
+      //     "to":"12.45"
+      //   }
+      // }
 
     ]).exec(function(err, found) {
       if (err) {

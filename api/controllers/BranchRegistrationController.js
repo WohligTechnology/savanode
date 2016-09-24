@@ -16,6 +16,22 @@ var controller = {
       res.json({value:false,data:{message:"Invalid Request"}})
     }
   },
+  addTime:function(req,res){
+    if(req.body){
+      BranchRegistration.addTime(req.body,res.callback);
+    }
+    else {
+      res.json({value:false,data:{message:"Invalid Request"}})
+    }
+  },
+  updateTime:function(req,res){
+    if(req.body){
+      BranchRegistration.updateTime(req.body,res.callback);
+    }
+    else {
+      res.json({value:false,data:{message:"Invalid Request"}})
+    }
+  },
   getOneHours:function(req,res){
     if(req.body){
       BranchRegistration.getOneHours(req.body,res.callback);

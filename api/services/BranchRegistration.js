@@ -5,7 +5,9 @@ var schema = new Schema({
   address: String,
   contactNumber: [Number],
   numberOfEmployee: Number,
-  photo: [String],
+  photo: [{
+        image: String
+    }],
   hours: [{
     name: String,
     time: [{

@@ -64,7 +64,7 @@ var exports = _.cloneDeep(require("sails-wohlig-service")(schema));
 var model = {
   getHouseHold: function(data, callback) {
     User.findOne({
-      _id: data._id
+        _id: data._id
     }).exec(function(err, found) {
       if (err) {
         console.log(err);
@@ -112,10 +112,10 @@ var model = {
     //  console.log(product);
     if (!data._id) {
       User.update({
-        _id: data.user
+        _id: data.User
       }, {
         $push: {
-          houseHold: data.houseHold
+          houseHold: data
         }
       }, function(err, updated) {
         if (err) {
@@ -145,7 +145,26 @@ var model = {
         }
       });
     }
-  }
+  },
+  deleteHouseHold: function(data, callback) {
+    User.update({
+      "houseHold._id": data._id
+    }, {
+      $pull: {
+        "houseHold": {
+          "_id": objectid(data._id)
+        }
+      }
+    }, function(err, updated) {
+      console.log(updated);
+      if (err) {
+        console.log(err);
+        callback(err, null);
+      } else {
+        callback(null, updated);
+      }
+    });
+  },
 
 };
 module.exports = _.assign(module.exports, exports, model);

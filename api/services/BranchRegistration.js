@@ -158,20 +158,20 @@ var model = {
     //  console.log(product);
     console.log("dddddd", data);
     if (!data._id) {
-      // BranchRegistration.update({
-      //   _id: data.BranchRegistration
-      // }, {
-      //   $push: {
-      //     hours: data
-      //   }
-      // }, function(err, updated) {
-      //   if (err) {
-      //     console.log(err);
-      //     callback(err, null);
-      //   } else {
-      //     callback(null, updated);
-      //   }
-      // });
+      BranchRegistration.update({
+        _id: data.BranchRegistration
+      }, {
+        $push: {
+          hours: data
+        }
+      }, function(err, updated) {
+        if (err) {
+          console.log(err);
+          callback(err, null);
+        } else {
+          callback(null, updated);
+        }
+      });
 
     } else {
       data._id = objectid(data._id);

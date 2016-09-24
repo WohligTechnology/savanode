@@ -23,15 +23,8 @@ var schema = new Schema({
     country:String,
     lat:String,
     lng:String,
-    securityQuestion:{
-      question:{
-        type:String,
-        enum:["A","B","C","D","E","F","G"]
-      },
-      answer:{
-        type:String
-      }
-    },
+      question:String,
+      answer:String,
     buisnessName:{
       type:String,
       unique:true

@@ -1,17 +1,11 @@
 var schema = new Schema({
-  programmeName:String,
   buisnessProgramme:String,
   toIssue:{
     type:String,
     enum:["Points","Stamps"]
   },
-  conversionRate:{
-    reward:Number,
-    currency:String,
-    rate:Number
-  },
-  totalReward:Number,
-  offer:[Number]
+  totalReward:Number
+
 });
 
 schema.plugin(deepPopulate, {});

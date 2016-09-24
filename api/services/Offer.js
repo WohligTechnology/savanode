@@ -40,7 +40,11 @@ var schema = new Schema({
   nationality:String,
   mostVisitedBranch:String,
   threeMonth:Number,
-  city:String
+  city:String,
+  headline:String,
+  offerInfo:String,
+  keyheadline:String,
+  termsAndConditions:String
 });
 
 schema.plugin(deepPopulate, {});
